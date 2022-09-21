@@ -8,7 +8,7 @@ function AddToCartHeader() {
       <div className="flex justify-around w-1/2">
         <h1 className="text-xl font-medium">Price</h1>
         <h1 className="text-xl font-medium">Quantity</h1>
-        <h1 className="text-sxl font-medium">SubTotal</h1>
+        <h1 className="text-xl font-medium">SubTotal</h1>
       </div>
     </div>
   );

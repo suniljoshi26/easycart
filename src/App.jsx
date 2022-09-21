@@ -6,6 +6,8 @@ import ProductDetail from "./ProductDetail";
 import Footer from "./Footer";
 import ProductListPage from "./ProductLIstPage";
 import NotFound from "./NotFound";
+import AddToCartRow from "./AddToCartRow";
+import AddToCartHeader from "./AddToCartHeader";
 
 function App() {
   const savedataString = localStorage.getItem("myCart") || "{}";
@@ -41,6 +43,8 @@ function App() {
         </Routes>
       </div>
       <Footer />
+      <AddToCartHeader />
+      <AddToCartRow />
     </div>
   );
 }
