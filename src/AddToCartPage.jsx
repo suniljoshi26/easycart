@@ -2,6 +2,7 @@ import React from "react";
 import AddCartRowButton from "./AddCartRowButton";
 import AddToCartHeader from "./AddToCartHeader";
 import AddToCartRow from "./AddToCartRow";
+import AddToCartTotal from "./AddToCartTotal";
 
 function AddToCartPage() {
   return (
@@ -10,6 +11,10 @@ function AddToCartPage() {
         <AddToCartHeader />
         <AddToCartRow />
         <AddCartRowButton />
+
+        <div className="mt-2 flex justify-end">
+          <AddToCartTotal />
+        </div>
       </div>
     </div>
   );
