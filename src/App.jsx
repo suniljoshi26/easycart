@@ -6,9 +6,7 @@ import ProductDetail from "./ProductDetail";
 import Footer from "./Footer";
 import ProductListPage from "./ProductLIstPage";
 import NotFound from "./NotFound";
-import AddToCartRow from "./AddToCartRow";
-import AddToCartHeader from "./AddToCartHeader";
-import AddCartRowButton from "./AddCartRowButton";
+import AddToCartPage from "./AddToCartPage";
 
 function App() {
   const savedataString = localStorage.getItem("myCart") || "{}";
@@ -40,13 +38,11 @@ function App() {
             path="/products/:id/"
             element={<ProductDetail onAddToCart={handleAddToCart} />}
           ></Route>
+          <Route path="/products/addtocart" element={<AddToCartPage />}></Route>
           <Route path="*" element={<NotFound />}></Route>
         </Routes>
       </div>
       <Footer />
-      <AddToCartHeader />
-      <AddToCartRow />
-      <AddCartRowButton></AddCartRowButton>
     </div>
   );
 }

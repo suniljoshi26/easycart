@@ -7,7 +7,7 @@ function AddCartButtonRow() {
         <AddCartButton>sdsdf</AddCartButton>
         <AddCartButton them="highlight">sdfsdf</AddCartButton>
       </div>
-      <div className="flex justify-around items-center w-1/2">
+      <div className="flex justify-end items-center w-1/2">
         <AddCartButton them="secondary">vdsvsd</AddCartButton>
       </div>
     </div>
