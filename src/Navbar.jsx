@@ -1,5 +1,6 @@
 import React from "react";
 import { RiShoppingBagLine } from "react-icons/ri";
+import { Link } from "react-router-dom";
 
 function Navbar({ productCount }) {
   return (
@@ -10,7 +11,9 @@ function Navbar({ productCount }) {
           src="https://thumbs.dreamstime.com/b/simple-vector-filled-flat-amazon-icon-logo-solid-black-pictogram-isolated-white-background-amazon-logo-159029074.jpg"
         />
         <div className="flex flex-col items-center ">
-          <RiShoppingBagLine className="text-6xl text-orange-600" />
+          <Link to="/products/addtocart/">
+            <RiShoppingBagLine className="text-6xl text-orange-600" />
+          </Link>
           <h1 className="text-orange-600 text-lg -mt-8">{productCount}</h1>
         </div>
       </div>
