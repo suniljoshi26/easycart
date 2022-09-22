@@ -49,11 +49,11 @@ function App() {
 
 export default App;
 
-var a = '{"title":"iphone","price":25,"category":"phone"}';
-var b = JSON.parse(a);
-console.log("jason", b);
-var c = JSON.stringify(b);
-console.log("stringify", c);
+// var a = '{"title":"iphone","price":25,"category":"phone"}';
+// var b = JSON.parse(a);
+// console.log("jason", b);
+// var c = JSON.stringify(b);
+// console.log("stringify", c);
 // const a = [10, 32, 34, 41, 12, 5, 6, 7, 1];
 // const b = a.filter(function (item) {
 //   return item > 10;
