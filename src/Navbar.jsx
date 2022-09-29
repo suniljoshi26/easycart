@@ -13,8 +13,11 @@ function Navbar({ productCount }) {
         <div className="flex flex-col items-center ">
           <Link to="/products/addtocart/">
             <RiShoppingBagLine className="text-6xl text-orange-600" />
+
+            <h1 className="text-orange-600 text-lg ml-6 -mt-8">
+              {productCount}
+            </h1>
           </Link>
-          <h1 className="text-orange-600 text-lg -mt-8">{productCount}</h1>
         </div>
       </div>
     </div>
