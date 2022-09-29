@@ -49,62 +49,64 @@ function ProductDetail({ onAddToCart }) {
   }
   return (
     <div className="  bg-gray-200 p-20">
-      <Link to="/" className="text-5xl mb-2 ">
-        <HiArrowSmLeft />
-      </Link>
-      <div className=" sm:flex gap-2 bg-white p-6 ">
-        <div className="w-1/2">
-          <img className=" w-full h-full" src={product.thumbnail} />
-        </div>
-        <div className="w-1/2">
-          <h1 className=" text-2xl sm:text-3xl font-bold text-gray-600">
-            {product.title}
-          </h1>
-          <h1 className="mt-8 text-3xl font-bold">$:{product.price}</h1>
-          <p className="mt-8 sm:text-2xl text-gray-600">
-            Neque porro quisquam est,qui dolore ipsum qula dolor sit amit,
-            consectetur adipisci velit sed quia non incidunt lores to porro ame.
-            numpuam eius modi temporo inciduntlores ta porroame.
-          </p>
-          <div className="mt-10  gap-3 flex flex-col  items-center sm:flex-row">
-            <div>
-              <input
-                value={count}
-                onChange={HandleCountChange}
-                type="number"
-                className="pt-3   sm:w-10 border border-black"
-              />
-            </div>
-            <div className="mt-8 sm:mt-0">
-              <button
-                onClick={handleButtonClick}
-                className="rounded-md bg-red-600 p-3  sm:px-6"
-              >
-                ADD TO CART
-              </button>
+      <div className=" bg-white p-2 ">
+        <Link to="/" className="text-4xl ">
+          <HiArrowSmLeft />
+        </Link>
+        <div className=" gap-2 flex md:flex-row flex-col justify-center ">
+          <div className=" md:w-1/2">
+            <img className=" w-full h-full" src={product.thumbnail} />
+          </div>
+          <div className=" md:w-1/2">
+            <h1 className=" text-2xl sm:text-3xl font-bold text-gray-600">
+              {product.title}
+            </h1>
+            <h1 className="mt-8 text-3xl font-bold">$:{product.price}</h1>
+            <p className="mt-8 sm:text-2xl text-gray-600">
+              Neque porro quisquam est,qui dolore ipsum qula dolor sit amit,
+              consectetur adipisci velit sed quia non incidunt lores to porro
+              ame. numpuam eius modi temporo inciduntlores ta porroame.
+            </p>
+            <div className="mt-10 flex gap-2  ">
+              <div>
+                <input
+                  value={count}
+                  onChange={HandleCountChange}
+                  type="number"
+                  className="  h-12 w-10 border border-black"
+                />
+              </div>
+              <div className=" ">
+                <button
+                  onClick={handleButtonClick}
+                  className="rounded-md bg-red-600 p-3 text-white "
+                >
+                  ADD TO CART
+                </button>{" "}
+              </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <div className="flex justify-between px-3 mt-4">
-        <div>
-          <Link
-            to={"/products/" + (id - 1)}
-            className="text-4xl flex items-center  "
-          >
-            <HiArrowSmLeft />
-            Previous
-          </Link>
-        </div>
-        <div>
-          <Link
-            to={"/products/" + (id + 1)}
-            className="text-4xl  flex items-center "
-          >
-            <HiArrowSmRight />
-            Next
-          </Link>
+        <div className="flex justify-between px-3 mt-4">
+          <div>
+            <Link
+              to={"/products/" + (id - 1)}
+              className="md:text-4xl sm:text-2xl flex items-center  "
+            >
+              <HiArrowSmLeft />
+              Previous
+            </Link>
+          </div>
+          <div>
+            <Link
+              to={"/products/" + (id + 1)}
+              className="md:text-4xl  sm:text-2xl flex items-center "
+            >
+              <HiArrowSmRight />
+              Next
+            </Link>
+          </div>
         </div>
       </div>
     </div>
