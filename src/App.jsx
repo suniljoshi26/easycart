@@ -7,6 +7,9 @@ import Footer from "./Footer";
 import ProductListPage from "./ProductLIstPage";
 import NotFound from "./NotFound";
 import AddToCartPage from "./AddToCartPage";
+import LoginPage from "./Login/LoginPage";
+import SignUp from "./Login/SignUp";
+import ForgetPass from "./Login/ForgetPass";
 
 function App() {
   const savedataString = localStorage.getItem("myCart") || "{}";
@@ -45,6 +48,11 @@ function App() {
             element={<AddToCartPage cart={cart} setCart={updateCart} />}
           ></Route>
           <Route path="*" element={<NotFound />}></Route>
+
+          <Route path="/login/" element={<LoginPage />}></Route>
+
+          <Route path="/singup/" element={<SignUp />}></Route>
+          <Route path="/forgetpass/" element={<ForgetPass />}></Route>
         </Routes>
       </div>
       <Footer />
