@@ -6,12 +6,15 @@ import ProductDetail from "./ProductDetail";
 import Footer from "./Footer";
 import ProductListPage from "./ProductLIstPage";
 import NotFound from "./NotFound";
-import AddToCartPage from "./AddToCartPage";
 import LoginPage from "./Login/LoginPage";
 import SignUp from "./Login/SignUp";
 import ForgetPass from "./Login/ForgetPass";
+import CartPage from "./cart/CartPage";
+import { dummy } from "./cart/dummy";
+import CartList from "./cart/CartList";
 
 function App() {
+  console.log("dummy data", dummy);
   const savedataString = localStorage.getItem("myCart") || "{}";
   const saveData = JSON.parse(savedataString);
 
@@ -33,9 +36,9 @@ function App() {
   }, 0);
 
   return (
-    <div className="  bg-gray-100 h-screen overflow-scroll flex flex-col">
-      <Navbar productCount={totalCount} />
-      <div className="grow">
+    <div className="  bg-gray-100 h-screen overflow-scroll flex  flex-col">
+      <Navbar productCount={totalCount} />]
+      <div className="grow p-10">
         <Routes>
           <Route index element={<ProductListPage />}></Route>
 
@@ -44,8 +47,8 @@ function App() {
             element={<ProductDetail onAddToCart={handleAddToCart} />}
           ></Route>
           <Route
-            path="/products/addtocart"
-            element={<AddToCartPage cart={cart} setCart={updateCart} />}
+            path="/cartpage"
+            element={<CartPage cart={cart} setCart={updateCart} />}
           ></Route>
           <Route path="*" element={<NotFound />}></Route>
 
