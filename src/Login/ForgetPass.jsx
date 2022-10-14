@@ -4,8 +4,8 @@ import { Link } from "react-router-dom";
 const ForgetPass = () => {
   return (
     <div>
-      <div className=" w-full h-screen overflow-scroll bg-gray-100 px-40 py-10">
-        <form className=" rounded-md flex flex-col space-y-5 shadow-md bg-white  p-20 ">
+      <div className=" w-full h-screen overflow-scroll bg-gray-100 md:px-40  px-4 py-10">
+        <form className=" rounded-md flex flex-col space-y-5 shadow-md bg-white  py-20  sm:px-20 px-10">
           <h1
             className="text-3xl font-semibold
            mb-4"
