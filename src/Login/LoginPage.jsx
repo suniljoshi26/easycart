@@ -1,12 +1,27 @@
 import { Form, Formik, withFormik } from "formik";
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import Button from "./Button";
 import * as Yup from "yup";
 import Input from "./Input";
+import axios from "axios";
+import Navbar from "../Navbar";
 
-const LoginApiCall = (values) => {
-  console.log("email and password", values.email, values.password);
+const LoginApiCall = (values, bag) => {
+  axios
+    .post("https://myeasykart.codeyogi.io/login", {
+      email: values.email,
+      password: values.password,
+    })
+    .then((response) => {
+      const { user, token } = response.data;
+      localStorage.setItem("token", token);
+      console.log("bag", bag);
+      bag.props.setUser(user);
+    })
+    .catch(() => {
+      console.log("invalid credentials");
+    }, []);
 };
 
 const schema = Yup.object().shape({
@@ -41,7 +56,7 @@ export const LoginPage = ({
   handleChange,
   handleSubmit,
 }) => {
-  console.log("error valus", errors, values);
+  // console.log("error valus", errors, values);
   return (
     <div>
       <div className=" w-full h-screen overflow-scroll bg-gray-100 md:px-40  px-4 py-10">
