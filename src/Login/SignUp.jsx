@@ -39,13 +39,13 @@ const SignUp = ({
 
   return (
     <div>
-      <div className=" w-full h-screen overflow-scroll bg-gray-100 px-40 py-10">
+      <div className=" w-full h-screen overflow-scroll bg-gray-100 md:px-40 px-4 py-10">
         <form
           onSubmit={handleSubmit}
           className=" rounded-md flex flex-col space-y-5 shadow-md bg-white  p-20 "
         >
           <h1
-            className="text-2xl font-bold 
+            className="text-3xl font-bold 
            mb-4"
           >
             Sign-Up
