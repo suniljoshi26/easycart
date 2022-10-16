@@ -9,21 +9,14 @@ import NotFound from "./NotFound";
 import LoginPage from "./Login/LoginPage";
 import SignUp from "./Login/SignUp";
 import ForgetPass from "./Login/ForgetPass";
-<<<<<<< HEAD
 import axios from "axios";
 import Loading from "./Loading";
 import UserRoute from "./UserRoute";
 import AuthRoute from "./AuthRoute";
 import Alert from "./Alert";
 import { userContext, AlertContext } from "./context/context";
-=======
-import CartPage from "./cart/CartPage";
-import { dummy } from "./cart/dummy";
-import CartList from "./cart/CartList";
->>>>>>> cartpage
 
 function App() {
-  console.log("dummy data", dummy);
   const savedataString = localStorage.getItem("myCart") || "{}";
   const saveData = JSON.parse(savedataString);
 
@@ -76,7 +69,6 @@ function App() {
   }
 
   return (
-<<<<<<< HEAD
     <div className="  bg-gray-100 h-screen overflow-scroll flex flex-col">
       {" "}
       <userContext.Provider value={{ user, setUser }}>
@@ -98,23 +90,6 @@ function App() {
                 path="/products/:id/"
                 element={<ProductDetail onAddToCart={handleAddToCart} />}
               ></Route>
-=======
-    <div className="  bg-gray-100 h-screen overflow-scroll flex  flex-col">
-      <Navbar productCount={totalCount} />]
-      <div className="grow p-10">
-        <Routes>
-          <Route index element={<ProductListPage />}></Route>
-
-          <Route
-            path="/products/:id/"
-            element={<ProductDetail onAddToCart={handleAddToCart} />}
-          ></Route>
-          <Route
-            path="/cartpage"
-            element={<CartPage cart={cart} setCart={updateCart} />}
-          ></Route>
-          <Route path="*" element={<NotFound />}></Route>
->>>>>>> cartpage
 
               <Route path="*" element={<NotFound />}></Route>
 
