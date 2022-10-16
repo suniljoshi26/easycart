@@ -3,7 +3,7 @@ import Button from "../Login/Button.jsx";
 import Input from "../Login/Input.jsx";
 import CartRow from "./CartRow.jsx";
 
-const CartList = ({ products, cart, updateCart }) => {
+const CartListPage = ({ products, cart, updateCart }) => {
   const [localCart, setLocalCart] = useState(cart);
   console.log("product title", products.title);
 
@@ -64,4 +64,4 @@ const CartList = ({ products, cart, updateCart }) => {
     </div>
   );
 };
-export default CartList;
+export default CartListPage;

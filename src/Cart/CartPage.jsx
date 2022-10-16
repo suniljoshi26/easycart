@@ -3,7 +3,7 @@ import { ImCross } from "react-icons/im";
 import { getProductId } from "../api";
 
 import Loading from "../Loading";
-import CartList from "./CartList";
+import CartListPage from "./CartListPage";
 
 const CartPage = ({ cart, setCart }) => {
   const [products, setProducts] = useState([]);
@@ -29,7 +29,7 @@ const CartPage = ({ cart, setCart }) => {
   {
     return (
       <div className="max-w-6xl px-20 py-16 mx-auto bg-white">
-        <CartList products={products} cart={cart} updateCart={setCart} />
+        <CartListPage products={products} cart={cart} updateCart={setCart} />
       </div>
     );
   }

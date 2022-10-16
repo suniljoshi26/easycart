@@ -98,7 +98,7 @@ function App() {
                 path="/login/"
                 element={
                   <AuthRoute>
-                    <LoginPage />
+                    <LoginPage setUser={setUser} />
                   </AuthRoute>
                 }
               ></Route>
