@@ -5,9 +5,7 @@ import Button from "./Button";
 import * as Yup from "yup";
 import Input from "./Input";
 import axios from "axios";
-import Navbar from "../Navbar";
-import WithUser from "../Hoc/WithUser";
-import WithAlert from "../Hoc/WithAlert";
+import { WithAlert, WithUser } from "../Hoc/WithProvider";
 
 const LoginApiCall = (values, bag) => {
   axios

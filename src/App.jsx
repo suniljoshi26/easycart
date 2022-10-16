@@ -1,4 +1,4 @@
-import React, { createContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import Navbar from "./Navbar";
 
@@ -14,9 +14,7 @@ import Loading from "./Loading";
 import UserRoute from "./UserRoute";
 import AuthRoute from "./AuthRoute";
 import Alert from "./Alert";
-
-export const userContext = createContext();
-export const AlertContext = createContext();
+import { userContext, AlertContext } from "./context/context";
 
 function App() {
   const savedataString = localStorage.getItem("myCart") || "{}";

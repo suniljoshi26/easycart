@@ -1,6 +1,6 @@
 import React from "react";
 import { useContext } from "react";
-import { AlertContext } from "../App";
+import { AlertContext } from "../context/context";
 const WithProvider = (Provider) => {
   const myHoc = (IncomingComponent) => {
     const outgoingComponent = (props) => {
@@ -13,3 +13,6 @@ const WithProvider = (Provider) => {
   return myHoc;
 };
 export default WithProvider;
+
+export const WithAlert = WithProvider(AlertContext);
+export const WithUser = WithProvider(useContext);
