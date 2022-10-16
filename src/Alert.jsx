@@ -3,6 +3,7 @@ import { TiWarning } from "react-icons/ti";
 import { BiErrorAlt } from "react-icons/bi";
 import { BsPatchCheck } from "react-icons/bs";
 import { MdCancel } from "react-icons/md";
+import WithAlert from "./Hoc/WithAlert";
 
 const themMap = {
   success: {
@@ -19,7 +20,8 @@ const themMap = {
   },
 };
 
-const Alert = ({ massage, type }) => {
+const Alert = ({ alert }) => {
+  const { massage, type } = alert;
   const { color, Icon } = themMap[type];
   return (
     <div>
@@ -58,4 +60,4 @@ const Alert = ({ massage, type }) => {
     </div>
   );
 };
-export default Alert;
+export default WithAlert(Alert);
