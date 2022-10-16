@@ -11,8 +11,8 @@ import SignUp from "./Login/SignUp";
 import ForgetPass from "./Login/ForgetPass";
 import axios from "axios";
 import Loading from "./Loading";
-import { UserRoute } from "./UserRoute";
-import { AuthRoute } from "./AuthRoute";
+import UserRoute from "./UserRoute";
+import AuthRoute from "./AuthRoute";
 
 export const userContext = createContext();
 function App() {

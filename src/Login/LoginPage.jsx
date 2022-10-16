@@ -6,6 +6,7 @@ import * as Yup from "yup";
 import Input from "./Input";
 import axios from "axios";
 import Navbar from "../Navbar";
+import WithUser from "../Hoc/WithUser";
 
 const LoginApiCall = (values, bag) => {
   axios
@@ -136,4 +137,4 @@ const myHoc = withFormik({
 });
 
 const easyLogin = myHoc(LoginPage);
-export default easyLogin;
+export default WithUser(easyLogin);

@@ -1,11 +1,11 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Navigate } from "react-router-dom";
-import { userContext } from "./App";
+import WithUser from "./Hoc/WithUser";
 
-export const UserRoute = ({ children }) => {
-  const { user } = useContext(userContext);
+const UserRoute = ({ children, user }) => {
   if (!user) {
     return <Navigate to="login" />;
   }
   return children;
 };
+export default WithUser(UserRoute);
