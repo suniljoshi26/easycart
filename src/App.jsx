@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import Navbar from "./Navbar";
 
@@ -9,13 +9,29 @@ import NotFound from "./NotFound";
 import LoginPage from "./Login/LoginPage";
 import SignUp from "./Login/SignUp";
 import ForgetPass from "./Login/ForgetPass";
+import axios from "axios";
+import Loading from "./Loading";
+import UserRoute from "./UserRoute";
+import AuthRoute from "./AuthRoute";
+import Alert from "./Alert";
+import { userContext, AlertContext } from "./context/context";
 
 function App() {
   const savedataString = localStorage.getItem("myCart") || "{}";
   const saveData = JSON.parse(savedataString);
 
   const [cart, setCart] = useState(saveData);
+  const [user, setUser] = useState();
 
+  //loading use state
+  const [loadingUser, setLoadingUser] = useState(true);
+  const [alert, setAlert] = useState();
+  // alert remove code
+  const removeAlert = () => {
+    setAlert(undefined);
+  };
+
+  console.log("Logged in user is ", user);
   console.log("cart  is ", cart);
   function handleAddToCart(productId, count) {
     const oldCount = cart[productId] || 0;
@@ -31,27 +47,68 @@ function App() {
     return output + cart[current];
   }, 0);
 
+  const token = localStorage.getItem("token");
+  useEffect(() => {
+    if (token) {
+      axios
+        .get("https://myeasykart.codeyogi.io/me", {
+          headers: {
+            Authorization: token,
+          },
+        })
+        .then((response) => {
+          setUser(response.data);
+          setLoadingUser(false);
+        });
+    } else {
+      setLoadingUser(false);
+    }
+  }, []);
+  if (loadingUser) {
+    return <Loading />;
+  }
+
   return (
     <div className="  bg-gray-100 h-screen overflow-scroll flex flex-col">
-      <Navbar productCount={totalCount} />
-      <div className="grow">
-        <Routes>
-          <Route index element={<ProductListPage />}></Route>
+      {" "}
+      <userContext.Provider value={{ user, setUser }}>
+        <AlertContext.Provider value={{ alert, setAlert, removeAlert }}>
+          <Alert />
+          <Navbar productCount={totalCount} />
+          <div className="grow">
+            <Routes>
+              <Route
+                index
+                element={
+                  <UserRoute>
+                    <ProductListPage />
+                  </UserRoute>
+                }
+              ></Route>
 
-          <Route
-            path="/products/:id/"
-            element={<ProductDetail onAddToCart={handleAddToCart} />}
-          ></Route>
+              <Route
+                path="/products/:id/"
+                element={<ProductDetail onAddToCart={handleAddToCart} />}
+              ></Route>
 
-          <Route path="*" element={<NotFound />}></Route>
+              <Route path="*" element={<NotFound />}></Route>
 
-          <Route path="/login/" element={<LoginPage />}></Route>
+              <Route
+                path="/login/"
+                element={
+                  <AuthRoute>
+                    <LoginPage setUser={setUser} />
+                  </AuthRoute>
+                }
+              ></Route>
 
-          <Route path="/signup/" element={<SignUp />}></Route>
-          <Route path="/forgetpass/" element={<ForgetPass />}></Route>
-        </Routes>
-      </div>
-      <Footer />
+              <Route path="/signup/" element={<SignUp />}></Route>
+              <Route path="/forgetpass/" element={<ForgetPass />}></Route>
+            </Routes>
+          </div>
+          <Footer />{" "}
+        </AlertContext.Provider>
+      </userContext.Provider>
     </div>
   );
 }
