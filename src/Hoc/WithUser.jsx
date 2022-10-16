@@ -4,8 +4,8 @@ import { userContext } from "../App";
 
 const WithUser = (IncomingComponent) => {
   const outgoingComponent = (props) => {
-    const { user, setUser } = useContext(userContext);
-    return <IncomingComponent {...props} user={user} setUser={setUser} />;
+    const contexData = useContext(userContext);
+    return <IncomingComponent {...props} {...contexData} />;
   };
 
   return outgoingComponent;

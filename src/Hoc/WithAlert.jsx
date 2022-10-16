@@ -4,15 +4,8 @@ import { AlertContext } from "../App";
 
 const WithAlert = (IncomingComponent) => {
   const outgoingComponent = (props) => {
-    const { alert, setAlert, removeAlert } = useContext(AlertContext);
-    return (
-      <IncomingComponent
-        {...props}
-        alert={alert}
-        setAlert={setAlert}
-        removeAlert={removeAlert}
-      />
-    );
+    const contexData = useContext(AlertContext);
+    return <IncomingComponent {...props} {...contexData} />;
   };
 
   return outgoingComponent;

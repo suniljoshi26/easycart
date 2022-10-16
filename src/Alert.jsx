@@ -3,7 +3,8 @@ import { TiWarning } from "react-icons/ti";
 import { BiErrorAlt } from "react-icons/bi";
 import { BsPatchCheck } from "react-icons/bs";
 import { MdCancel } from "react-icons/md";
-import WithAlert from "./Hoc/WithAlert";
+import WithProvider from "./Hoc/WithProvider";
+import { AlertContext } from "./App";
 
 const themMap = {
   success: {
@@ -77,4 +78,4 @@ const Alert = ({ alert, removeAlert }) => {
     </div>
   );
 };
-export default WithAlert(Alert);
+export default WithProvider(AlertContext)(Alert);
