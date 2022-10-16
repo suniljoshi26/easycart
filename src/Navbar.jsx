@@ -16,12 +16,11 @@ function Navbar({ productCount }) {
         <div className="flex items-center space-x-2">
           <div className="text-orange-500 text-6xl">
             <Link to="/login/">
-              {" "}
               <CgProfile />
             </Link>
           </div>
           <div className="flex flex-col items-center ">
-            <Link to="/products/addtocart/">
+            <Link to="/cartpage">
               <RiShoppingBagLine className="text-6xl text-orange-600" />
 
               <h1 className="text-orange-600 text-lg ml-6 -mt-8">

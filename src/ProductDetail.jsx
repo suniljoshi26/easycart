@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 
 import { HiArrowSmLeft, HiArrowSmRight } from "react-icons/hi";
-import { getProductId } from "./api";
+import { getProductById } from "./api";
 import Loading from "./Loading";
 import NotFound from "./NotFound";
 function ProductDetail({ onAddToCart }) {
@@ -13,7 +13,7 @@ function ProductDetail({ onAddToCart }) {
 
   useEffect(
     function () {
-      const p = getProductId(id);
+      const p = getProductById(id);
       p.then(function (product) {
         console.log("api kaa response aa gya");
         setProduct(product);
