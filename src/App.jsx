@@ -15,6 +15,7 @@ import UserRoute from "./UserRoute";
 import AuthRoute from "./AuthRoute";
 import Alert from "./Alert";
 import { userContext, AlertContext } from "./context/context";
+import CartPage from "./Cart/CartPage";
 
 function App() {
   const savedataString = localStorage.getItem("myCart") || "{}";
@@ -97,13 +98,17 @@ function App() {
                 path="/login/"
                 element={
                   <AuthRoute>
-                    <LoginPage setUser={setUser} />
+                    <LoginPage />
                   </AuthRoute>
                 }
               ></Route>
 
               <Route path="/signup/" element={<SignUp />}></Route>
               <Route path="/forgetpass/" element={<ForgetPass />}></Route>
+              <Route
+                path="/cart"
+                element={<CartPage cart={cart} setCart={updateCart} />}
+              ></Route>
             </Routes>
           </div>
           <Footer />{" "}
