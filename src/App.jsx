@@ -24,11 +24,17 @@ function App() {
 
   const [cart, setCart] = useState(saveData);
   const [user, setUser] = useState();
+
+  //loading use state
   const [loadingUser, setLoadingUser] = useState(true);
   const [alert, setAlert] = useState({
     type: "success",
     massage: "this is a test error",
   });
+  // alert remove code
+  const removeAlert = () => {
+    setAlert(undefined);
+  };
 
   console.log("Logged in user is ", user);
   console.log("cart  is ", cart);
@@ -71,7 +77,7 @@ function App() {
     <div className="  bg-gray-100 h-screen overflow-scroll flex flex-col">
       {" "}
       <userContext.Provider value={{ user, setUser }}>
-        <AlertContext.Provider value={{ alert, setAlert }}>
+        <AlertContext.Provider value={{ alert, setAlert, removeAlert }}>
           <Alert />
           <Navbar productCount={totalCount} />
           <div className="grow">

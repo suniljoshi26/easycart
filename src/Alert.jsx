@@ -20,7 +20,11 @@ const themMap = {
   },
 };
 
-const Alert = ({ alert }) => {
+const Alert = ({ alert, removeAlert }) => {
+  if (!alert) {
+    return <></>;
+  }
+
   const { massage, type } = alert;
   const { color, Icon } = themMap[type];
   return (
@@ -51,7 +55,10 @@ const Alert = ({ alert }) => {
             </p>
           </div>
           <div className="flex xl:items-center lg:items-center sm:justify-end justify-center pr-4">
-            <button className="focus:outline-none focus:text-gray-400 hover:text-gray-400  cursor-pointer text-2xl text-gray-600 dark:text-gray-400">
+            <button
+              onClick={removeAlert}
+              className="focus:outline-none focus:text-gray-400 hover:text-gray-400  cursor-pointer text-2xl text-gray-600 dark:text-gray-400"
+            >
               <MdCancel />
             </button>
           </div>
