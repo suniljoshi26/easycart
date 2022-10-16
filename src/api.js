@@ -5,7 +5,7 @@ export function getProductList() {
     return response.data.products;
   });
 }
-export function getProductById(id) {
+export function getProductId(id) {
   return axios
     .get("https://dummyjson.com/products/" + id)
     .then(function (response) {
