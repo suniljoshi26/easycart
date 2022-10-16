@@ -11,7 +11,6 @@ import SignUp from "./Login/SignUp";
 import ForgetPass from "./Login/ForgetPass";
 import CartPage from "./cart/CartPage";
 import { dummy } from "./cart/dummy";
-import CartList from "./cart/CartList";
 
 function App() {
   console.log("dummy data", dummy);
