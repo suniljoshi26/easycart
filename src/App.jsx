@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { createContext, useEffect, useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import Navbar from "./Navbar";
 
@@ -14,6 +14,7 @@ import Loading from "./Loading";
 import { UserRoute } from "./UserRoute";
 import { AuthRoute } from "./AuthRoute";
 
+export const userContext = createContext();
 function App() {
   const savedataString = localStorage.getItem("myCart") || "{}";
   const saveData = JSON.parse(savedataString);
@@ -60,39 +61,42 @@ function App() {
 
   return (
     <div className="  bg-gray-100 h-screen overflow-scroll flex flex-col">
-      <Navbar productCount={totalCount} />
-      <div className="grow">
-        <Routes>
-          <Route
-            index
-            element={
-              <UserRoute user={user}>
-                <ProductListPage />
-              </UserRoute>
-            }
-          ></Route>
+      {" "}
+      <userContext.Provider value={{ user, setUser }}>
+        <Navbar productCount={totalCount} />
+        <div className="grow">
+          <Routes>
+            <Route
+              index
+              element={
+                <UserRoute>
+                  <ProductListPage />
+                </UserRoute>
+              }
+            ></Route>
 
-          <Route
-            path="/products/:id/"
-            element={<ProductDetail onAddToCart={handleAddToCart} />}
-          ></Route>
+            <Route
+              path="/products/:id/"
+              element={<ProductDetail onAddToCart={handleAddToCart} />}
+            ></Route>
 
-          <Route path="*" element={<NotFound />}></Route>
+            <Route path="*" element={<NotFound />}></Route>
 
-          <Route
-            path="/login/"
-            element={
-              <AuthRoute user={user}>
-                <LoginPage setUser={setUser} />
-              </AuthRoute>
-            }
-          ></Route>
+            <Route
+              path="/login/"
+              element={
+                <AuthRoute>
+                  <LoginPage setUser={setUser} />
+                </AuthRoute>
+              }
+            ></Route>
 
-          <Route path="/signup/" element={<SignUp />}></Route>
-          <Route path="/forgetpass/" element={<ForgetPass />}></Route>
-        </Routes>
-      </div>
-      <Footer />
+            <Route path="/signup/" element={<SignUp />}></Route>
+            <Route path="/forgetpass/" element={<ForgetPass />}></Route>
+          </Routes>
+        </div>
+        <Footer />{" "}
+      </userContext.Provider>
     </div>
   );
 }
