@@ -27,10 +27,7 @@ function App() {
 
   //loading use state
   const [loadingUser, setLoadingUser] = useState(true);
-  const [alert, setAlert] = useState({
-    type: "success",
-    massage: "this is a test error",
-  });
+  const [alert, setAlert] = useState();
   // alert remove code
   const removeAlert = () => {
     setAlert(undefined);

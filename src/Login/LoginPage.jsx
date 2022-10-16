@@ -1,12 +1,13 @@
-import { Form, Formik, withFormik } from "formik";
+import { withFormik } from "formik";
 import React from "react";
-import { Link, Navigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Button from "./Button";
 import * as Yup from "yup";
 import Input from "./Input";
 import axios from "axios";
 import Navbar from "../Navbar";
 import WithUser from "../Hoc/WithUser";
+import WithAlert from "../Hoc/WithAlert";
 
 const LoginApiCall = (values, bag) => {
   axios
@@ -21,7 +22,7 @@ const LoginApiCall = (values, bag) => {
       bag.props.setUser(user);
     })
     .catch(() => {
-      console.log("invalid credentials");
+      bag.props.setAlert({ type: "error", massage: "invalid credentials" });
     }, []);
 };
 
@@ -125,7 +126,6 @@ export const LoginPage = ({
           </div>
         </form>
       </div>
-      );
     </div>
   );
 };
@@ -137,4 +137,4 @@ const myHoc = withFormik({
 });
 
 const easyLogin = myHoc(LoginPage);
-export default WithUser(easyLogin);
+export default WithAlert(WithUser(easyLogin));

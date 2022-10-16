@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { TiWarning } from "react-icons/ti";
 import { BiErrorAlt } from "react-icons/bi";
 import { BsPatchCheck } from "react-icons/bs";
@@ -21,6 +21,16 @@ const themMap = {
 };
 
 const Alert = ({ alert, removeAlert }) => {
+  //alert timer and remove
+  useEffect(() => {
+    if (alert) {
+      const timeout = setTimeout(removeAlert, 5 * 1000);
+      return () => {
+        clearTimeout(timeout); //  alert remove function
+      };
+    }
+  }, [alert]);
+
   if (!alert) {
     return <></>;
   }
