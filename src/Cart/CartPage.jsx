@@ -28,7 +28,7 @@ const CartPage = ({ cart, setCart }) => {
   }
   {
     return (
-      <div className="max-w-6xl px-20 py-16 mx-auto bg-white">
+      <div className="max-w-6xl px-20 py-16 mx-auto mt-10 bg-white">
         <CartListPage products={products} cart={cart} updateCart={setCart} />
       </div>
     );

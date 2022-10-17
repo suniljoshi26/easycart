@@ -16,7 +16,7 @@ const LoginApiCall = (values, bag) => {
     .then((response) => {
       const { user, token } = response.data;
       localStorage.setItem("token", token);
-      console.log("bag", bag);
+      console.log("bag", user);
       bag.props.setUser(user);
     })
     .catch(() => {
@@ -132,7 +132,6 @@ const myHoc = withFormik({
   validationSchema: schema,
   initialValues: initialValues,
   handleSubmit: LoginApiCall,
-});
+})(LoginPage);
 
-const easyLogin = myHoc(LoginPage);
-export default WithAlert(WithUser(easyLogin));
+export default WithAlert(WithUser(myHoc));

@@ -1,10 +1,10 @@
 import React from "react";
 import { useContext } from "react";
 import { AlertContext } from "../context/context";
-const WithProvider = (Provider) => {
+const WithProvider = (provider) => {
   const myHoc = (IncomingComponent) => {
     const outgoingComponent = (props) => {
-      const contexData = useContext(Provider);
+      const contexData = useContext(provider);
       return <IncomingComponent {...props} {...contexData} />;
     };
 

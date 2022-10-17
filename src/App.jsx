@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import Navbar from "./Navbar";
 
@@ -9,30 +9,19 @@ import NotFound from "./NotFound";
 import LoginPage from "./Login/LoginPage";
 import SignUp from "./Login/SignUp";
 import ForgetPass from "./Login/ForgetPass";
-import axios from "axios";
-import Loading from "./Loading";
+import Alert from "./Alert";
+import CartPage from "./Cart/CartPage";
+import UserProvider from "./Provider/UserProvider";
+import { AlertProvider } from "./Provider/AlertProvider";
 import UserRoute from "./UserRoute";
 import AuthRoute from "./AuthRoute";
-import Alert from "./Alert";
-import { userContext, AlertContext } from "./context/context";
-import CartPage from "./Cart/CartPage";
 
 function App() {
   const savedataString = localStorage.getItem("myCart") || "{}";
   const saveData = JSON.parse(savedataString);
 
   const [cart, setCart] = useState(saveData);
-  const [user, setUser] = useState();
 
-  //loading use state
-  const [loadingUser, setLoadingUser] = useState(true);
-  const [alert, setAlert] = useState();
-  // alert remove code
-  const removeAlert = () => {
-    setAlert(undefined);
-  };
-
-  console.log("Logged in user is ", user);
   console.log("cart  is ", cart);
   function handleAddToCart(productId, count) {
     const oldCount = cart[productId] || 0;
@@ -48,32 +37,11 @@ function App() {
     return output + cart[current];
   }, 0);
 
-  const token = localStorage.getItem("token");
-  useEffect(() => {
-    if (token) {
-      axios
-        .get("https://myeasykart.codeyogi.io/me", {
-          headers: {
-            Authorization: token,
-          },
-        })
-        .then((response) => {
-          setUser(response.data);
-          setLoadingUser(false);
-        });
-    } else {
-      setLoadingUser(false);
-    }
-  }, []);
-  if (loadingUser) {
-    return <Loading />;
-  }
-
   return (
     <div className="  bg-gray-100 h-screen overflow-scroll flex flex-col">
       {" "}
-      <userContext.Provider value={{ user, setUser }}>
-        <AlertContext.Provider value={{ alert, setAlert, removeAlert }}>
+      <UserProvider>
+        <AlertProvider>
           <Alert />
           <Navbar productCount={totalCount} />
           <div className="grow">
@@ -98,7 +66,7 @@ function App() {
                 path="/login/"
                 element={
                   <AuthRoute>
-                    <LoginPage setUser={setUser} />
+                    <LoginPage />
                   </AuthRoute>
                 }
               ></Route>
@@ -112,8 +80,8 @@ function App() {
             </Routes>
           </div>
           <Footer />{" "}
-        </AlertContext.Provider>
-      </userContext.Provider>
+        </AlertProvider>
+      </UserProvider>
     </div>
   );
 }
