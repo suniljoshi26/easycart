@@ -29,7 +29,7 @@ const UserProvider = ({ children }) => {
       setLoadingUser(false);
     }
   }, []);
-  console.log(user);
+
   if (loadingUser) {
     return <Loading />;
   }
