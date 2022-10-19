@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { ImCross } from "react-icons/im";
-import { getProductId } from "../api";
+import { getProductByIds, getProductId } from "../api";
 
 import Loading from "../Loading";
 import CartListPage from "./CartListPage";
@@ -14,10 +14,12 @@ const CartPage = ({ cart, setCart }) => {
   useEffect(() => {
     setloading(true);
     const productId = Object.keys(cart);
-    const myProductPromises = productId.map((id) => {
-      return getProductId(id);
-    });
-    Promise.all(myProductPromises).then((products) => {
+    // const myProductPromises = productId.map((id) => {
+    //   return getProductId(id);
+    // });
+    // Promise.all(myProductPromises)
+
+    getProductByIds(productId).then((products) => {
       setProducts(products);
       setloading(false);
     });
