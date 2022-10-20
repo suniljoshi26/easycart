@@ -5,31 +5,42 @@ import Input from "../Login/Input.jsx";
 import CartRow from "./CartRow.jsx";
 
 const CartListPage = ({ cart, updateCart }) => {
-  const [localCart, setLocalCart] = useState({});
-
+  const [quantityMap, setQuantityMap] = useState({});
+  const cartToQuantityMap = () =>
+    cart.reduce(
+      (m, cartItem) => ({ ...m, [cartItem.product.id]: cartItem.quantity }),
+      {}
+    );
   useEffect(() => {
-    cart.map;
-    setLocalCart(cart);
+    setQuantityMap(cartToQuantityMap);
   }, [cart]);
 
   const handleQuantityChange = (productId, newValue) => {
     console.log("handleChange", newValue, productId);
 
-    const newLocalCart = { ...localCart, [productId]: newValue };
-    setLocalCart(newLocalCart);
+    const newLocalCart = { ...quantityMap, [productId]: newValue };
+    setQuantityMap(newLocalCart);
   };
 
   const handleUpdateCart = () => {
-    updateCart(localCart);
+    // const newCart = cart.map((cartItem) => ({
+    //   ...cartItem,
+    //   quantity: quantityMap[cartItem.product.id],
+    // }));
+
+    updateCart(quantityMap);
   };
   const handleRemove = (productId) => {
     console.log("product to be removed", productId);
-    const newCart = { ...cart };
+    const newQuantityMap = cartToQuantityMap();
     console.log("before cart", cart);
-    delete newCart[productId];
+    delete newQuantityMap[productId];
 
     console.log("after cart", cart);
-    updateCart(newCart);
+    // const newCart = cart.filter((item) => {
+    //   item.product.id === productId;
+    // });
+    updateCart(newQuantityMap);
   };
   return (
     <div>
@@ -44,7 +55,7 @@ const CartListPage = ({ cart, updateCart }) => {
           <CartRow
             key={cartItem.product.id}
             product={cartItem.product}
-            quantity={cartItem.quantity}
+            quantity={quantityMap[cartItem.product.id]}
             onQuantityChange={handleQuantityChange}
             onRemove={handleRemove}
           />

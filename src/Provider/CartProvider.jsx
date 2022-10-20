@@ -24,18 +24,24 @@ const CartProvider = ({ isLoggedIn, user, children }) => {
 
   //  console.log("cart  is ", cart);
   function addToCart(productId, count) {
-    const oldCount = cart[productId] || 0;
-    const newCart = { ...cart, [productId]: oldCount + count };
+    const quantityMap = cart.reduce(
+      (m, cartItem) => ({ ...m, [cartItem.product.id]: cartItem.quantity }),
+      {}
+    );
+    const oldCount = quantityMap[productId] || 0;
+    const newCart = { ...quantityMap, [productId]: oldCount + count };
     updateCart(newCart);
   }
-  function updateCart(newCart) {
-    setCart(newCart);
+  function updateCart(quantityMap) {
+    // setCart(newCart);
 
     if (!isLoggedIn) {
-      const cartString = JSON.stringify(newCart);
+      const cartString = JSON.stringify(quantityMap);
       localStorage.setItem("myCart", cartString);
     } else {
-      saveData(newCart);
+      saveData(quantityMap).then((response) => {
+        //setCart(response);
+      });
     }
   }
   // const cartCount = Object.keys(cart).reduce(function (output, current) {
