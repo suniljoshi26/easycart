@@ -34,7 +34,7 @@ const UserProvider = ({ children }) => {
     return <Loading />;
   }
   return (
-    <userContext.Provider value={{ user, setUser }}>
+    <userContext.Provider value={{ isLoggedIn: !!token, user, setUser }}>
       {children}
     </userContext.Provider>
   );

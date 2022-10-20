@@ -15,72 +15,52 @@ import UserProvider from "./Provider/UserProvider";
 import { AlertProvider } from "./Provider/AlertProvider";
 import UserRoute from "./UserRoute";
 import AuthRoute from "./AuthRoute";
+import CartProvider from "./Provider/CartProvider";
 
 function App() {
-  const savedataString = localStorage.getItem("myCart") || "{}";
-  const saveData = JSON.parse(savedataString);
-
-  const [cart, setCart] = useState(saveData);
-
-  console.log("cart  is ", cart);
-  function handleAddToCart(productId, count) {
-    const oldCount = cart[productId] || 0;
-    const newCart = { ...cart, [productId]: oldCount + count };
-    updateCart(newCart);
-  }
-  function updateCart(newCart) {
-    setCart(newCart);
-    const cartString = JSON.stringify(newCart);
-    localStorage.setItem("myCart", cartString);
-  }
-  const totalCount = Object.keys(cart).reduce(function (output, current) {
-    return output + cart[current];
-  }, 0);
-
   return (
     <div className="  bg-gray-100 h-screen overflow-scroll flex flex-col">
       {" "}
       <UserProvider>
-        <AlertProvider>
-          <Alert />
-          <Navbar productCount={totalCount} />
-          <div className="grow">
-            <Routes>
-              <Route
-                index
-                element={
-                  <UserRoute>
-                    <ProductListPage />
-                  </UserRoute>
-                }
-              ></Route>
+        <CartProvider>
+          <AlertProvider>
+            <Alert />
+            <Navbar />
+            <div className="grow">
+              <Routes>
+                <Route
+                  index
+                  element={
+                    <UserRoute>
+                      <ProductListPage />
+                    </UserRoute>
+                  }
+                ></Route>
 
-              <Route
-                path="/products/:id/"
-                element={<ProductDetail onAddToCart={handleAddToCart} />}
-              ></Route>
+                <Route
+                  path="/products/:id/"
+                  element={<ProductDetail />}
+                ></Route>
 
-              <Route path="*" element={<NotFound />}></Route>
+                <Route path="*" element={<NotFound />}></Route>
 
-              <Route
-                path="/login/"
-                element={
-                  <AuthRoute>
-                    <LoginPage />
-                  </AuthRoute>
-                }
-              ></Route>
+                <Route
+                  path="/login/"
+                  element={
+                    <AuthRoute>
+                      <LoginPage />
+                    </AuthRoute>
+                  }
+                ></Route>
 
-              <Route path="/signup/" element={<SignUp />}></Route>
-              <Route path="/forgetpass/" element={<ForgetPass />}></Route>
-              <Route
-                path="/cart"
-                element={<CartPage cart={cart} setCart={updateCart} />}
-              ></Route>
-            </Routes>
-          </div>
-          <Footer />{" "}
-        </AlertProvider>
+                <Route path="/signup/" element={<SignUp />}></Route>
+                <Route path="/forgetpass/" element={<ForgetPass />}></Route>
+                <Route path="/cart" element={<CartPage />}></Route>
+              </Routes>
+            </div>
+            <Footer />{" "}
+          </AlertProvider>
+        </CartProvider>
       </UserProvider>
     </div>
   );

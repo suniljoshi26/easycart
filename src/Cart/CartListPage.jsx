@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
+import { WithCart } from "../Hoc/WithProvider.jsx";
 import Button from "../Login/Button.jsx";
 import Input from "../Login/Input.jsx";
 import CartRow from "./CartRow.jsx";
 
-const CartListPage = ({ products, cart, updateCart }) => {
-  const [localCart, setLocalCart] = useState(cart);
-  console.log("product title", products.title);
+const CartListPage = ({ cart, updateCart }) => {
+  const [localCart, setLocalCart] = useState({});
 
   useEffect(() => {
+    cart.map;
     setLocalCart(cart);
   }, [cart]);
 
@@ -38,12 +39,12 @@ const CartListPage = ({ products, cart, updateCart }) => {
         <span className="w-32">Quantity</span>
         <span className="w-20">Subtotal</span>
       </div>
-      {products.map((p) => {
+      {cart.map((cartItem) => {
         return (
           <CartRow
-            key={p.id}
-            products={p}
-            quantity={localCart[p.id]}
+            key={cartItem.product.id}
+            product={cartItem.product}
+            quantity={cartItem.quantity}
             onQuantityChange={handleQuantityChange}
             onRemove={handleRemove}
           />
@@ -64,4 +65,4 @@ const CartListPage = ({ products, cart, updateCart }) => {
     </div>
   );
 };
-export default CartListPage;
+export default WithCart(CartListPage);

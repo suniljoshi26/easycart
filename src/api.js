@@ -44,3 +44,32 @@ export const getProductByIds = (ids) => {
       return response.data;
     });
 };
+
+export const saveData = (cart) => {
+  return axios
+    .post(
+      "https://myeasykart.codeyogi.io/carts",
+      {
+        data: cart,
+      },
+      {
+        headers: {
+          Authorization: localStorage.getItem("token"),
+        },
+      }
+    )
+    .then((response) => {
+      return response.data;
+    });
+};
+export const getData = () => {
+  return axios
+    .get("https://myeasykart.codeyogi.io/carts", {
+      headers: {
+        Authorization: localStorage.getItem("token"),
+      },
+    })
+    .then((response) => {
+      return response.data;
+    });
+};

@@ -1,6 +1,6 @@
 import React from "react";
 import { useContext } from "react";
-import { AlertContext, userContext } from "../context/context";
+import { AlertContext, CartContext, userContext } from "../context/context";
 const WithProvider = (provider) => {
   const myHoc = (IncomingComponent) => {
     const outgoingComponent = (props) => {
@@ -16,3 +16,4 @@ export default WithProvider;
 
 export const WithAlert = WithProvider(AlertContext);
 export const WithUser = WithProvider(userContext);
+export const WithCart = WithProvider(CartContext);
