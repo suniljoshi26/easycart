@@ -53,7 +53,14 @@ function App() {
                   }
                 ></Route>
 
-                <Route path="/signup/" element={<SignUp />}></Route>
+                <Route
+                  path="/signup"
+                  element={
+                    <AuthRoute>
+                      <SignUp />
+                    </AuthRoute>
+                  }
+                ></Route>
                 <Route path="/forgetpass/" element={<ForgetPass />}></Route>
                 <Route path="/cart" element={<CartPage />}></Route>
               </Routes>

@@ -106,7 +106,7 @@ export const LoginPage = ({
             <span className="ml-2">Remember me</span>
           </div>
           <div className="flex justify-end items-center gap-2">
-            <Link to="/singup/" className="text-indigo-500">
+            <Link to="/signup" className="text-indigo-500">
               Sing Up
             </Link>
             <span>||</span>
