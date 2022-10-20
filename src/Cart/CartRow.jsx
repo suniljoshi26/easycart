@@ -2,14 +2,14 @@ import React from "react";
 import { ImCross } from "react-icons/im";
 import Button from "../Login/Button";
 
-function CartRow({ products, quantity, onQuantityChange, onRemove }) {
-  console.log("product title ", products.title);
+function CartRow({ product, quantity, onQuantityChange, onRemove }) {
+  console.log("product title ", product.title);
 
   const handleChange = (event) => {
-    onQuantityChange(products.id, +event.target.value);
+    onQuantityChange(product.id, +event.target.value);
   };
   const handleCrossClick = () => {
-    onRemove(products.id);
+    onRemove(product.id);
   };
   return (
     <div className="flex flex-row items-center space-x-4 px-4 py-4 border border-gray-300 bg-white  ">
@@ -19,11 +19,11 @@ function CartRow({ products, quantity, onQuantityChange, onRemove }) {
         </button>
       </span>
       <div className="w-10 h-10 object-cover">
-        <img className="w-full h-full" src={products.thumbnail} />
+        <img className="w-full h-full" src={product.thumbnail} />
       </div>
 
-      <div className="grow text-red-600 font-bold ">{products.title}</div>
-      <h3 className="w-20  font-bold text-gray-700">${products.price}</h3>
+      <div className="grow text-red-600 font-bold ">{product.title}</div>
+      <h3 className="w-20  font-bold text-gray-700">${product.price}</h3>
       <div className="w-32 font-bold text-gray-700">
         <input
           type="number"
@@ -33,7 +33,7 @@ function CartRow({ products, quantity, onQuantityChange, onRemove }) {
         />
       </div>
       <span className="w-20 font-bold text-gray-700">
-        {products.price * quantity}
+        {product.price * quantity}
       </span>
     </div>
   );

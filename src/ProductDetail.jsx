@@ -5,7 +5,8 @@ import { HiArrowSmLeft, HiArrowSmRight } from "react-icons/hi";
 import { getProductId } from "./api";
 import Loading from "./Loading";
 import NotFound from "./NotFound";
-function ProductDetail({ onAddToCart }) {
+import { WithCart } from "./Hoc/WithProvider";
+function ProductDetail({ addToCart }) {
   const id = +useParams().id;
   const [product, setProduct] = useState();
   const [loading, setLoading] = useState(true);
@@ -30,7 +31,7 @@ function ProductDetail({ onAddToCart }) {
     setCount(+event.target.value);
   }
   function handleButtonClick() {
-    onAddToCart(id, count);
+    addToCart(id, count);
   }
   // console.log("id ias ", id, params);
   // let product;
@@ -112,4 +113,4 @@ function ProductDetail({ onAddToCart }) {
     </div>
   );
 }
-export default ProductDetail;
+export default WithCart(ProductDetail);

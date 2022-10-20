@@ -2,8 +2,10 @@ import React from "react";
 import { RiShoppingBagLine } from "react-icons/ri";
 import { CgProfile } from "react-icons/cg";
 import { Link } from "react-router-dom";
+import { WithCart } from "./Hoc/WithProvider";
 
-function Navbar({ productCount }) {
+function Navbar({ cartCount }) {
+  console.log("product", cartCount);
   return (
     <div className="py-2 bg-white">
       <div className=" max-w-6xl flex justify-between mx-auto items-center ">
@@ -25,7 +27,7 @@ function Navbar({ productCount }) {
               <RiShoppingBagLine className="text-6xl text-orange-600" />
 
               <h1 className="text-orange-600 text-lg ml-6 -mt-8">
-                {productCount}
+                {cartCount}
               </h1>
             </Link>
           </div>
@@ -35,4 +37,4 @@ function Navbar({ productCount }) {
   );
 }
 
-export default Navbar;
+export default WithCart(Navbar);
