@@ -1,24 +1,46 @@
-import { useFormik, withFormik } from "formik";
+import { withFormik } from "formik";
 import React from "react";
 import { Link } from "react-router-dom";
 import Button from "./Button";
 import * as Yup from "yup";
 import Input from "./Input";
+import axios from "axios";
+import { WithAlert, WithUser } from "../Hoc/WithProvider";
 
-const SignUpApi = (values) => {};
+const SignUpApi = (values, bag) => {
+  axios
+    .post("https://myeasykart.codeyogi.io/signup", {
+      fullName: values.FullName,
+      email: values.email,
+      password: values.password,
+    })
+    .then((response) => {
+      const { user, token } = response.data;
+
+      console.log("user", user);
+      localStorage.setItem("token", token);
+      console.log("token", token);
+      bag.props.setUser(user);
+    })
+    .catch(({ user }) => {
+      if (!user) {
+        bag.props.setAlert({ type: "error", massage: "invalid credentials" });
+      } else {
+        bag.props.setAlert({ type: "success", massage: "signup success" });
+      }
+    });
+};
 
 const schema = Yup.object().shape({
-  FullName: Yup.string().min(4).max(50).required(),
+  FullName: Yup.string().min(3).max(50).required(),
   email: Yup.string().email().required(),
-  password: Yup.string().min(8).max(16).required(),
-  confirmPassword: Yup.string().min(8).max(16).required(),
+  password: Yup.string().min(6).max(16).required(),
 });
 
 const initialValues = {
   FullName: "",
   email: "",
   password: "",
-  confirmPassword: "",
 };
 
 const SignUp = ({
@@ -93,20 +115,6 @@ const SignUp = ({
               touched={touched.password}
               error={errors.password}
             />
-            <Input
-              label="confirmPassword"
-              value={values.confirmPassword}
-              onChange={handleChange}
-              onBlur={handleBlur}
-              id="confirmPassword"
-              type="password"
-              name="confirmPassword"
-              autoComplete=" current-password"
-              required="required"
-              placeholder="PassconfirmPasswordward"
-              touched={touched.confirmPassword}
-              error={errors.confirmPassword}
-            />
           </div>
 
           <Link to="/login/" className="text-indigo-500 text-end text-xl">
@@ -128,4 +136,4 @@ const myHoc = withFormik({
 
 const easySignUp = myHoc(SignUp);
 
-export default easySignUp;
+export default WithAlert(WithUser(easySignUp));
