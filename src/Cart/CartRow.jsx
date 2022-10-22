@@ -44,19 +44,19 @@ function CartRow({ product, quantity, onQuantityChange, onRemove }) {
             <ImCross />
           </button>
         </div>
-        <div className="flex justify-between border border-gray-300  px-2 py-3">
+        <div className="flex justify-between border border-gray-300   px-2 py-3">
           <h3>Product</h3>
-          <h3 className=" text-red-600 font-bold ">{product.title}</h3>
+          <h3 className=" text-red-600  ml-4 ">{product.title}</h3>
         </div>
         <div className="flex justify-between border border-gray-300  px-2 py-3">
           <h1>Price</h1>
-          <h3 className=" font-bold text-gray-700">${product.price}</h3>
+          <h3 className="  text-gray-700">${product.price}</h3>
         </div>
         <div className="flex justify-between border border-gray-300 px-2 py-3">
           <h1>Quantity</h1>
           <input
             type="number"
-            className=" border border-gray-600 mx-2  p-1  rounded-md"
+            className="  w-10 border border-gray-600 mx-2  p-1  rounded-md"
             value={quantity}
             onChange={handleChange}
           />
@@ -64,7 +64,7 @@ function CartRow({ product, quantity, onQuantityChange, onRemove }) {
         <div className="flex justify-between border border-gray-300  px-2 py-3">
           <h1>Sub Total</h1>
           <span className=" font-bold text-gray-700">
-            {product.price * quantity}
+            ${product.price * quantity}
           </span>
         </div>
       </div>

@@ -44,11 +44,13 @@ const CartListPage = ({ cart, updateCart }) => {
   };
   return (
     <div>
-      <div className=" flex  space-x-4 px-4 py-2 bg-gray-200 border border-gray-400">
-        <span className="ml-28 flex grow">Product</span>
-        <span className="w-20">price</span>
-        <span className="w-32">Quantity</span>
-        <span className="w-20">Subtotal</span>
+      <div className="hidden md:block">
+        <div className="     flex  space-x-4 px-4 py-2 bg-gray-200 border border-gray-400">
+          <span className="ml-28 flex grow">Product</span>
+          <span className="w-20">price</span>
+          <span className="w-32">Quantity</span>
+          <span className="w-20">Subtotal</span>
+        </div>
       </div>
       {cart.map((cartItem) => {
         return (
