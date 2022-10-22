@@ -64,7 +64,7 @@ const SignUp = ({
       <div className=" w-full h-screen overflow-scroll bg-gray-100 md:px-40 px-4 py-10">
         <form
           onSubmit={handleSubmit}
-          className=" rounded-md flex flex-col space-y-5 shadow-md bg-white  p-20 "
+          className=" rounded-md flex flex-col space-y-5 shadow-md bg-white  md:p-20 p-4 "
         >
           <h1
             className="text-3xl font-bold 
@@ -117,11 +117,14 @@ const SignUp = ({
             />
           </div>
 
-          <Link to="/login/" className="text-indigo-500 text-end text-xl">
-            Login
-          </Link>
           <div>
             <Button type="Submit">Sign Up</Button>
+          </div>
+          <div className="flex justify-end items-center gap-2 mt-4 md:mt-0">
+            <span>Already account?</span>
+            <Link to="/login/" className="text-indigo-500">
+              Login
+            </Link>
           </div>
         </form>
       </div>
