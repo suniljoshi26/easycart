@@ -61,16 +61,16 @@ const CartListPage = ({ cart, updateCart }) => {
           />
         );
       })}
-      <div className="flex justify-between border border-gray-300 px-4 py-2 bg-white ">
+      <div className="sm:flex justify-between border border-gray-300 px-4 py-2 bg-white ">
         <div className="space-x-1">
           {" "}
-          <div className="flex space-x-2">
+          <div className=" flex space-x-2">
             <Input />
             <Button>APPLY COUPON</Button>
           </div>
         </div>
         <div>
-          <Button onClick={handleUpdateCart}>update cart</Button>
+          <Button onClick={handleUpdateCart}>UPDATE CART </Button>
         </div>
       </div>
     </div>
