@@ -7,7 +7,7 @@ import { WithCart } from "./Hoc/WithProvider";
 function Navbar({ cartCount }) {
   console.log("product", cartCount);
   return (
-    <div className="py-2 bg-white">
+    <div className="py-2 bg-white fixed w-full">
       <div className=" max-w-6xl flex justify-between mx-auto items-center ">
         <div>
           <img
