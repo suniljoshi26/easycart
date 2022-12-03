@@ -58,8 +58,8 @@ export const LoginPage = ({
 }) => {
   // console.log("error valus", errors, values);
   return (
-    <div>
-      <div className=" w-full h-screen overflow-scroll bg-gray-100 md:px-40  px-6 py-10">
+    <div className="mt-20 ">
+      <div className=" w-full h-screen overflow-scroll  bg-gray-100 md:px-40  px-6 py-10">
         <form
           onSubmit={handleSubmit}
           className=" rounded-md flex flex-col space-y-5 shadow-md bg-white  md:p-20 p-4 "
