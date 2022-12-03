@@ -60,7 +60,7 @@ const SignUp = ({
   // });
 
   return (
-    <div>
+    <div className=" mt-20">
       <div className=" w-full h-screen overflow-scroll bg-gray-100 md:px-40 px-4 py-10">
         <form
           onSubmit={handleSubmit}
