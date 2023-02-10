@@ -115,8 +115,8 @@ export const LoginPage = ({
             <Button type="Submit">Login</Button>
             <div className="flex justify-end items-center gap-2 mt-4 md:mt-0">
               <span>Don't have any account?</span>
-              <Link to="/signup" className="text-indigo-500">
-                Sing Up
+              <Link to="/s/" className="text-indigo-500">
+                Sign Up
               </Link>
             </div>
           </div>

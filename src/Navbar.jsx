@@ -2,9 +2,9 @@ import React from "react";
 import { RiShoppingBagLine } from "react-icons/ri";
 import { CgProfile } from "react-icons/cg";
 import { Link } from "react-router-dom";
-import { WithCart } from "./Hoc/WithProvider";
+import { WithCart, WithUser } from "./Hoc/WithProvider";
 
-function Navbar({ cartCount }) {
+function Navbar({ cartCount, user }) {
   console.log("product", cartCount);
   return (
     <div className="py-2 bg-white fixed w-full">
@@ -30,6 +30,15 @@ function Navbar({ cartCount }) {
                 {cartCount}
               </h1>
             </Link>
+            {user && (
+              <button
+                onClick={() => {
+                  localStorage.removeItem("token");
+                }}
+              >
+                logout
+              </button>
+            )}
           </div>
         </div>
       </div>
@@ -37,4 +46,4 @@ function Navbar({ cartCount }) {
   );
 }
 
-export default WithCart(Navbar);
+export default WithCart(WithUser(Navbar));

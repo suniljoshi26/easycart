@@ -91,9 +91,9 @@ function ProductListPage() {
       >
         <option value="default"> default sort</option>
         <option value="title"> sort by name</option>
-        <option value="price"> sort by price:high to low </option>
+        <option value="price"> sort by price:low to high </option>
 
-        <option value="priceH2L"> sort by price:low to high</option>
+        <option value="priceH2L"> sort by price:high to low</option>
       </select>
       {productList.data.length > 0 && (
         <ProductList products={productList.data} />

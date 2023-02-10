@@ -24,9 +24,8 @@ function App() {
       <UserProvider>
         <CartProvider>
           <AlertProvider>
-            <Alert />
-            <Navbar />
-            <div className="grow">
+            <Alert /> <Navbar />
+            <div className="grow mt-10">
               <Routes>
                 <Route
                   index
@@ -54,7 +53,7 @@ function App() {
                 ></Route>
 
                 <Route
-                  path="/signup"
+                  path="/s/"
                   element={
                     <AuthRoute>
                       <SignUp />
